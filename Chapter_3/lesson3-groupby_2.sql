@@ -1,3 +1,5 @@
+SQL SCHEMATIC : https://s3.console.aws.amazon.com/s3/upload/sanwal-bucket-01?region=us-east-1
+
 LESSON 3
 
 EXERCISE
@@ -50,7 +52,7 @@ SELECT r.name region_name,
 FROM accounts a
 JOIN web_events w
 ON a.id = w.account_id
-JOIN sales_reps s 
+JOIN sales_reps s
 ON s.id = a.sales_rep_id
 JOIN region r
 ON r.id = s.region_id

@@ -3,6 +3,7 @@
 
 CHAPTER 3
 QUIZ : CASE
+SQL SCHEMATIC : https://s3.console.aws.amazon.com/s3/upload/sanwal-bucket-01?region=us-east-1
 
 #1 """ Write a query to display for each order, the account ID, total amount of
   the order, and the level of the order - ‘Large’ or ’Small’

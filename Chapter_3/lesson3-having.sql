@@ -2,6 +2,7 @@
 LESSON 3
 
 EXERCISE : HAVING
+SQL SCHEMATIC : https://s3.console.aws.amazon.com/s3/upload/sanwal-bucket-01?region=us-east-1
 
 
 # 1
