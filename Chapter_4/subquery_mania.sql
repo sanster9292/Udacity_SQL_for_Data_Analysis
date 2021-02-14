@@ -27,3 +27,34 @@ FROM
   GROUP BY s.name, r.name) sales_rep_usd
 
 GROUP BY sales_rep_name, region_name;
+
+#2
+"""
+For the region with the largest (sum) of sales total_amt_usd, how many total (count) orders were
+placed?"""
+
+SELECT region_name,
+       COUNT(*)
+FROM
+
+  (SELECT r.name region_name,
+         a.name account_name,
+         o.total_amt_usd total_order_amt
+  FROM region r
+  JOIN sales_reps s
+  ON r.id = s.region_id
+  JOIN accounts a
+  ON a.sales_rep_id = s.id
+  JOIN orders o
+  ON o.account_id = a.id
+  GROUP BY r.name, a.name, o.total_amt_usd) region_sales
+
+GROUP BY region_name
+ORDER BY COUNT(*);
+
+
+#3
+"""
+How many accounts had more total purchases than the account name which has bought the most standard_qty
+paper throughout their lifetime as a customer?
+"""
