@@ -68,7 +68,7 @@ FROM
   ON a.id = o.account_id
   GROUP BY a.name
   HAVING SUM(o.total) > (
-    
+
       SELECT total
       FROM
 
@@ -83,3 +83,32 @@ FROM
         LIMIT 1) total_table)
 
       )count_table;
+
+
+#4
+"""
+For the customer that spent the most (in total over their lifetime as a customer) total_amt_usd,
+how many web_events did they have for each channel?
+"""
+
+SELECT a.name acct_name,
+      w.channel channel_name,
+      COUNT(*) num_events
+FROM web_events w
+JOIN accounts a
+ON a.id = w.account_id
+AND a.name =
+
+  (SELECT account_name
+    FROM
+
+      (SELECT a.name account_name,
+             SUM(o.total_amt_usd) total_spent
+      FROM accounts a
+      JOIN orders o
+      ON o.account_id = a.id
+      GROUP by 1
+      ORDER BY 2 DESC
+      LIMIT 1) max_spent_acct
+    )
+  GROUP BY  1 ,2;
