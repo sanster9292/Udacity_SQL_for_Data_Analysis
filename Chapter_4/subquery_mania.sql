@@ -58,3 +58,28 @@ ORDER BY COUNT(*);
 How many accounts had more total purchases than the account name which has bought the most
 standard_qty paper throughout their lifetime as a customer?
 """
+
+SELECT COUNT(*)
+FROM
+(
+  SELECT a.name
+  FROM orders o
+  JOIN accounts a
+  ON a.id = o.account_id
+  GROUP BY a.name
+  HAVING SUM(o.total) > (
+    
+      SELECT total
+      FROM
+
+        (SELECT a.name account_name,
+               SUM(o.standard_qty) standard_qty,
+               SUM(o.total)total
+        FROM accounts a
+        JOIN orders o
+        ON a.id = o.account_id
+        GROUP BY 1
+        ORDER BY 2 DESC
+        LIMIT 1) total_table)
+
+      )count_table;
