@@ -112,3 +112,41 @@ AND a.name =
       LIMIT 1) max_spent_acct
     )
   GROUP BY  1 ,2;
+
+#5
+"""What is the lifetime average amount spent in terms of total_amt_usd for the top 10 total spending
+ accounts?"""
+
+SELECT ROUND(AVG(total_$_spent),3)
+FROM
+  (SELECT a.name account_name,
+          SUM(o.total_amt_usd) total_$_spent
+  FROM accounts a
+  JOIN orders o
+  ON o.account_id = a.id
+  GROUP BY 1
+  ORDER BY 2 DESC
+  LIMIT 10) amt_spent;
+
+
+  #6
+  """
+What is the lifetime average amount spent in terms of total_amt_usd, including only the companies that
+spent more per order, on average, than the average of all orders.
+
+  """
+SELECT ROUND(AVG(amt_spent),3)
+FROM(
+
+  SELECT a.name account_name,
+         SUM(o.total_amt_usd) amt_spent
+  FROM orders o
+  JOIN accounts a
+  ON a.id = o.account_id
+  AND o.total_amt_usd > (
+
+      SELECT AVG(o.total_amt_usd) avg_all
+      FROM orders o)
+  GROUP BY 1
+  ORDER by 2 DESC
+)total_spent_avg;
