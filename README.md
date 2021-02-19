@@ -3,7 +3,7 @@ contains the SQL queries I write for the Udacity SQL course
 
 
 ### The link for the class I am following here is
-https://classroom.udacity.com/courses/ud198
+https://www.udacity.com/course/sql-for-data-analysis--ud198
 
 This is an in-depth look at SQL that is offered for free from by Udacity and I highly recommend it
 
