@@ -1,6 +1,6 @@
 CHAPTER 4
 QUIZ : WITH
-SQL SCHEMATIC : https://s3.console.aws.amazon.com/s3/upload/sanwal-bucket-01?region=us-east-1
+SQL SCHEMATIC : https://sanwal-bucket-01.s3.amazonaws.com/screen-shot-2017-11-16-at-3.54.06-pm.png
 
 # 1
 """
@@ -222,6 +222,6 @@ Here we are doing a simple task.
 
 We need to find the average amount spent by the customers in the database. We then use this
 to filter out the orders table to contain only the accounts that had averages above than the
-average we calculted and the we just take the average of those accounts. 
+average we calculted and the we just take the average of those accounts.
 
 """
