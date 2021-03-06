@@ -63,3 +63,37 @@ is that when I converted the name of the account to all lowercase, I also used t
 REPLACE function to replace the space in the account name column.
 
 """
+
+
+#3
+"""
+We would also like to create an initial password, which they will change after their first log in.
+The first password will be the first letter of the primary_poc's first name (lowercase), then the last
+letter of their first name (lowercase), the first letter of their last name (lowercase), the last letter
+of their last name (lowercase), the number of letters in their first name, the number of letters in their
+last name, and then the name of the company they are working with, all capitalized with no spaces.
+"""
+
+WITH t1 as (
+SELECT REPLACE(UPPER(name), ' ','') account_name,
+	primary_poc full_name,
+  REPLACE(LEFT(primary_poc,STRPOS(primary_poc, ' ')), ' ','') first_name,
+  RIGHT(primary_poc, LENGTH(primary_poc)-STRPOS(primary_poc, ' ')) last_name
+
+from accounts)
+
+SELECT full_name ,
+      account_name,
+      CONCAT(LOWER(LEFT(first_name,1)), LOWER(RIGHT(first_name,1)), LOWER(LEFT(last_name,1)),
+       LOWER(RIGHT(last_name,1)), LENGTH(first_name),LENGTH(last_name),account_name)
+FROM t1;
+
+
+"""
+EXPLANATION:
+
+Here I am just taking what we did in question 1 and 2 and bringing them together. There is nothing
+to explain as I am just using right and left functions to get first and last letters and the lengths
+and then just concatenate them. 
+
+"""
