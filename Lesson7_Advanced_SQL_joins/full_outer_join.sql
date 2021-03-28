@@ -11,3 +11,24 @@ Say you're an analyst at Parch & Posey and you want to see:
     * but also each account that does not have a sales rep and each sales rep that does not have an account (some of the columns in these returned rows will be empty)
 
 """
+
+SELECT s.name sales_rep_name,
+       a.name account_name
+
+FROM sales_reps s
+FULL JOIN accounts a 
+ON s.id = a.sales_rep_id
+ORDER BY 1;
+
+"""
+to isolate any unmatched rows we can add one more line at the end of the query.
+"""
+
+SELECT s.name sales_rep_name,
+       a.name account_name
+
+FROM sales_reps s
+FULL JOIN accounts a
+ON s.id = a.sales_rep_id
+WHERE a.sales_rep_id IS NULL or s.id IS NULL
+ORDER BY 1;
